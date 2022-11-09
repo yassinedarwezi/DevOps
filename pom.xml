@@ -14,7 +14,7 @@
 	<name>tpAchatProject</name>
 	<description>tpAchatProject</description>
 	<properties>
-		<java.version>11.0.17</java.version>
+		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 	<dependencies>
@@ -71,21 +71,14 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 	</dependencies>
-<build>
-    <plugins>
-        <!-- START Of Plugins -->
-        <!-- MAVEN COMPILER PLUGIN -->
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.3</version>
-            <configuration>
-                <source>11.0.17</source>
-                <target>11.0.17</target>
-            </configuration>
-        </plugin>
-        <!-- END Of Plugins -->
-    </plugins>
-</build>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
