@@ -4,37 +4,26 @@ pipeline {
   stage ('SCM CHECKOUT') {
     steps {
       git branch: 'Yahia_ModuleFornisseur', url: 'https://github.com/yassinedarwezi/DevOps.git' }}
-   
-        stage ('Initialize') {
-             steps {
-                 
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                   
-                '''
-            
-        }
-            
-        }
-      stage ('compile and test ') {
-   steps {
-     withMaven(maven: 'M2_HOME'){
-         sh 'mvn -version'
-         sh 'mvn compile test '}}}
-         
-    stage('package'){
+      stage('Maven Version'){
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh 'mvn -version'
             }
         }
         
-        stage("scan"){
-        steps {
-                withSonarQubeEnv ( installationName: 'sonarqube-8.9.7'){
-                sh 'mvn sonar:sonar'
-                }
+        stage('compile'){
+            steps {
+                sh 'mvn compile -e'
+            }
         }
-        }      
-    
-  }}
+        stage('package'){
+            steps {
+                sh 'mvn clean package -DskipTests'
+            }
+        } 
+        
+          stage('test'){
+            steps {
+                sh 'mvn test'
+            }
+        } 
+    }}
