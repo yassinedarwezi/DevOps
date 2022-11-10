@@ -1,0 +1,112 @@
+pipeline {
+    agent any
+    environment {
+        NEXUS_VERSION = "nexus3"
+        NEXUS_PROTOCOL = "http"
+        NEXUS_URL = "192.168.56.1:8081"
+        NEXUS_REPOSITORY = "maven-nexus-repo"
+        NEXUS_CREDENTIAL_ID = "nexus"
+    }
+	
+	   
+    stages {
+        stage('Pull GIT') {
+            steps {
+                echo 'Pulling...';
+                  git branch: 'dev',
+                  url : 'https://github.com/chamsBLT/ci_project-spring.git',
+                  credentialsId: 'token';
+            }
+        }
+        
+        stage('Maven Package') {
+            steps {
+                sh "chmod +x mvnw "
+                sh "./mvnw package -DskipTests=true"
+                
+            }
+        }
+
+        
+     stage('Unit Tests') {
+       steps {
+	       //sh "docker-compose up&"
+               sh "mvn test"
+	       //sh "docker-compose down"
+        }
+        post { 
+         always { 
+           junit '**/target/surefire-reports/*.xml'
+           jacoco execPattern: 'target/jacoco.exec'  
+       }
+     }
+    }
+  
+        
+                stage('SonarQube analysis') {
+            steps {
+              withSonarQubeEnv (installationName:'Sonar'){
+              sh """./mvnw sonar:sonar \
+                -Dsonar.projectKey=project-jenkins-pipeline1 \
+                -Dsonar.host.url=http://192.168.56.1:9000 \
+                -Dsonar.coverage.jacoco.xmlReportPaths=../target/site/jacoco-aggregate/jacoco.xml """    
+              }
+                
+       }
+    }
+    stage("Publish to Nexus Repository Manager") {
+            steps {
+                script {
+                    pom = readMavenPom file: "pom.xml";
+                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
+                    artifactPath = filesByGlob[0].path;
+                    artifactExists = fileExists artifactPath;
+                    if(artifactExists) {
+                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+                        nexusArtifactUploader(
+                            nexusVersion: NEXUS_VERSION,
+                            protocol: NEXUS_PROTOCOL,
+                            nexusUrl: NEXUS_URL,
+                            groupId: pom.groupId,
+                            version: pom.version,
+                            repository: NEXUS_REPOSITORY,
+                            credentialsId: NEXUS_CREDENTIAL_ID,
+                            artifacts: [
+                                [artifactId: pom.artifactId,
+                                classifier: '',
+                                file: artifactPath,
+                                type: pom.packaging],
+                                [artifactId: pom.artifactId,
+                                classifier: '',
+                                file: "pom.xml",
+                                type: "pom"]
+                            ]
+                        );
+                    } else {
+                        error "*** File: ${artifactPath}, could not be found";
+                    }		
+                }
+            }
+        }
+	
+
+	    stage('Build new image') {
+		    steps{
+			    withDockerRegistry([credentialsId: "docker-credentials", url: ""]) {
+ 		            //sh 'printenv'
+			    sh "docker build -t firaschikhaoui/firas_cicd_back:latest ."
+			    
+		    }
+		    }
+    }
+	        stage('Push new image') {
+			steps{
+		withDockerRegistry([credentialsId: "docker-credentials", url: ""]) {
+  		sh "docker push firaschikhaoui/firas_cicd_back:latest"
+	}
+			}
+		}
+
+    }
+}
