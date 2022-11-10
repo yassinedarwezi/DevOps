@@ -3,7 +3,7 @@ pipeline {
     environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "192.168.56.1:8081"
+        NEXUS_URL = "192.168.122.1:8081"
         NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexus"
     }
@@ -13,8 +13,8 @@ pipeline {
         stage('Pull GIT') {
             steps {
                 echo 'Pulling...';
-                  git branch: 'dev',
-                  url : 'https://github.com/chamsBLT/ci_project-spring.git',
+                  git branch: 'Yahia_ModuleFornisseur',
+                  url : 'https://github.com/yassinedarwezi/DevOps.git',
                   credentialsId: 'token';
             }
         }
@@ -91,22 +91,8 @@ pipeline {
         }
 	
 
-	    stage('Build new image') {
-		    steps{
-			    withDockerRegistry([credentialsId: "docker-credentials", url: ""]) {
- 		            //sh 'printenv'
-			    sh "docker build -t firaschikhaoui/firas_cicd_back:latest ."
-			    
-		    }
-		    }
-    }
-	        stage('Push new image') {
-			steps{
-		withDockerRegistry([credentialsId: "docker-credentials", url: ""]) {
-  		sh "docker push firaschikhaoui/firas_cicd_back:latest"
-	}
-			}
-		}
+	 
+	
 
     }
 }
