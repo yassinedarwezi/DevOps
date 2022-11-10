@@ -73,11 +73,12 @@
 	</dependencies>
 
 	<build>
-		<plugins>
+<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+	    <version>${project.parent.version}</version>
+        </plugin>
 		</plugins>
 	</build>
 
