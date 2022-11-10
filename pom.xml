@@ -129,11 +129,6 @@
 	<build>
 		<plugins>
 			<plugin>
-<<<<<<< HEAD
-                          <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-jar-plugin</artifactId>
-               </plugin>
-=======
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
@@ -143,7 +138,6 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.1.0</version><!--$NO-MVN-MAN-VER$-->
 			</plugin>
->>>>>>> main
 		</plugins>
 	</build>
 
