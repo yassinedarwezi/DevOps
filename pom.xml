@@ -76,8 +76,7 @@
 <plugins>
 			<plugin>
             <artifactId>maven-compiler-plugin</artifactId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-	    <version>${project.parent.version}</version>
+            <version>3.1</version>
         </plugin>
 		</plugins>
 	</build>
