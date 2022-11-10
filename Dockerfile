@@ -1,4 +1,5 @@
 FROM openjdk:11
-MAINTAINER esprit.tn
-COPY target/tpAchatProject-1.0.jar tpAchatProject.jar
-ENTRYPOINT ["java","-jar","/tpAchatProject.jar"]
+EXPOSE 8089
+ARG JAR_FILE=target/*1.0.jar
+COPY ${JAR_FILE} back.jar
+ENTRYPOINT ["java","-jar","/back.jar"]
