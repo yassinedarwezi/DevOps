@@ -13,8 +13,8 @@ pipeline {
         stage('Pull GIT') {
             steps {
                 echo 'Pulling...';
-                  git branch: 'dev',
-                  url : 'https://github.com/chamsBLT/ci_project-spring.git',
+                  git branch: 'Yahia_ModuleFornisseur',
+                  url : 'https://github.com/yassinedarwezi/DevOps.git',
                   credentialsId: 'token';
             }
         }
