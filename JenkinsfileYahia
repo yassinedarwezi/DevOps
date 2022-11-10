@@ -3,7 +3,7 @@ pipeline {
   stages {
   stage ('SCM CHECKOUT') {
     steps {
-      git branch: 'fares', url: 'https://github.com/yassinedarwezi/DevOps.git' }}
+      git branch: 'Yahia_ModuleFornisseur', url: 'https://github.com/yassinedarwezi/DevOps.git' }}
    
         stage ('Initialize') {
              steps {
