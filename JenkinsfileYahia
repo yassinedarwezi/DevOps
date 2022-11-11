@@ -48,6 +48,13 @@ pipeline {
         }
         }  
          
+	 stage("MVN Nexus"){
+        steps {
+                withSonarQubeEnv ( installationName: 'SonarQube-8.9.7'){
+                sh 'mvn deploy'
+                }
+        }
+        }  
 
         
 	
