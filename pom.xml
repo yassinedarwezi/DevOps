@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.esprit.examen</groupId>
 	<artifactId>tpAchatProject</artifactId>
-	<version>1.0</version>
+	<version>1.0.3-SNAPSHOT</version>
 	<name>tpAchatProject</name>
 	<description>tpAchatProject</description>
 	<properties>
@@ -125,7 +125,7 @@
 		<repository>
 			<id>deploymentRepo</id>
 			<name>Nexus Repository </name>
-			<url>http://172.17.0.1:8081/repository/maven-releases/</url>
+			<url>http://172.17.0.1:8081/repository/maven-snapshots/</url>
 		</repository>
 	</distributionManagement>
 	<build>
