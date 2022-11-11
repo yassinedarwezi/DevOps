@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -18,7 +19,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.esprit.examen.controllers.FournisseurRestController;
 import com.esprit.examen.entities.Fournisseur;
-import com.esprit.examen.entities.Operateur;
 
 @SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
@@ -32,8 +32,9 @@ public class TestFournisseurControllerMock {
 
 	Fournisseur o = Fournisseur.builder().idFournisseur((long) 7).code("yahia").libelle("yahiaModuleFournisseur").build();
 
-	@Test
-	public void RetrieveOperateurById() {
+	
+	@RepeatedTest(4)
+	public void RetrieveFournisseurById() {
 
 		Mockito.when(osI.retrieveFournisseur(Mockito.anyLong())).thenReturn(o);
 		Fournisseur o_get = osI.retrieveFournisseur((long) 7);
