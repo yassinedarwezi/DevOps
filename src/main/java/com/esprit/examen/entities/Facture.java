@@ -52,4 +52,8 @@ public class Facture implements Serializable {
 		this.dateDerniereModificationFacture = dateDerniereModificationFacture;
 		this.archivee = archivee;
 	}
+
+
+	public Facture(double v, double v1, Date date1, Date date2, boolean b) {
+	}
 }
