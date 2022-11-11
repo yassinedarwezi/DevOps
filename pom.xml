@@ -119,6 +119,29 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 
+			<!-- to let surefire to run JUnit 4 but also JUnit 5 tests -->
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-surefire-provider</artifactId>
+				<version>1.0.1</version>
+			</dependency>
+			<!-- JUnit vintage engine to run JUnit 3 or JUnit 4 tests -->
+			<dependency>
+				<groupId>org.junit.vintage</groupId>
+				<artifactId>junit-vintage-engine</artifactId>
+				<version>4.12.1</version>
+			</dependency>
+			<!-- JUnit 5 engine to run JUnit 5 tests -->
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>5.0.1</version>
+			</dependency>
+		<dependency>
+			<groupId>org.apache.maven.surefire</groupId>
+			<artifactId>surefire</artifactId>
+			<version>2.19.1</version> <!-- matters until now-->
+		</dependency>
 
 	</dependencies>
 
@@ -134,6 +157,7 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.1.0</version><!--$NO-MVN-MAN-VER$-->
 			</plugin>
+
 		</plugins>
 	</build>
 
