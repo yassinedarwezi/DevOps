@@ -1,7 +1,9 @@
 pipeline {
-  agent any
-  stages {
-  stage ('SCM CHECKOUT') {
+    agent any
+	
+	   
+    stages {
+       stage ('SCM CHECKOUT') {
     steps {
       git branch: 'main', url: 'https://github.com/yassinedarwezi/DevOps.git' }}
       stage('Maven Version'){
@@ -9,21 +11,47 @@ pipeline {
                 sh 'mvn -version'
             }
         }
-        
-        stage('compile'){
+	 stage('compile'){
             steps {
                 sh 'mvn compile -e'
             }
         }
-        stage('package'){
-            steps {
-                sh 'mvn clean package -DskipTests'
-            }
-        } 
+	
+	
         
-          stage('test'){
+        stage('Maven Package') {
+             steps {
+                sh 'mvn clean package -DskipTests'
+            
+            }
+        }
+	
+	
+	 stage('Clean') {
+            steps {
+                sh 'mvn clean'
+            }
+        }
+      
+	
+	 stage('test'){
             steps {
                 sh 'mvn test'
             }
         } 
-    }}
+	
+          stage("scan"){
+        steps {
+                withSonarQubeEnv ( installationName: 'SonarQube-8.9.7'){
+                sh 'mvn sonar:sonar'
+                }
+        }
+        }  
+	
+         
+
+        
+	
+
+    }
+}
