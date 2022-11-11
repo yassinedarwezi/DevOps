@@ -103,20 +103,7 @@ public class TestFournisseurServiceImpMock {
 		}
 	}
 
-	@Test
-	public void EditFournisseur_ifFound() {
-		Fournisseur o_edit = new Fournisseur();
-		o_edit.setIdFournisseur(3L);
-		o_edit.setCode("yahia edit");
-
-		Fournisseur new_o_edit = new Fournisseur();
-		new_o_edit.setCode("new yahia edit");
-
-		when(or.findById(o_edit.getIdFournisseur())).thenReturn(Optional.of(o_edit));
-		o_edit = osI.updateFournisseur(new_o_edit);
-
-		verify(or).save(o_edit);
-	}
+	
 	
 
 	@Test
