@@ -26,26 +26,26 @@ pipeline {
         }
 
 
-//         stage("Maven Build") {
-//             steps {
-//                 script {
-//                     sh "mvn clean install -DskipTests"
-//                 }
-//             }
-//         }
-//
-//         stage('MVN COMPILE') {
-//             steps {
-//                sh' mvn compile'
-//
-//             }
-//          }
-//
-//          stage('MVN SONARQUBE') {
-//                      steps {
-//                          sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
-//                      }
-//                  }
+        stage("Maven Build") {
+            steps {
+                script {
+                    sh "mvn clean install -DskipTests"
+                }
+            }
+        }
+
+        stage('MVN COMPILE') {
+            steps {
+               sh' mvn compile'
+
+            }
+         }
+
+         stage('MVN SONARQUBE') {
+                     steps {
+                         sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=esprit'
+                     }
+                 }
 //
 //                  stage ('NEXUS DEPLOY') {
 //                      steps {
