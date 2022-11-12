@@ -1,22 +1,16 @@
 pipeline {
     agent any
-  
+  environment {
 
-tools {
-        maven "Maven"
-    }
-    environment {
-        NEXUS_VERSION = "nexus3"
-        NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "http://192.168.16.73:8081"
-        NEXUS_REPOSITORY = "maven-nexus-repo"
-        NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
-	    registry = "ghazichhida/tpachat"
+        registry = "ghazichhida/tpachat"
 
         registryCredential = 'dockerhub'
 
         dockerImage = ''
+
     }
+
+
     stages {
         stage('Checkout Git') {
             steps {
@@ -47,49 +41,18 @@ tools {
             }
          }
 
-        
-
-	stage("Publish to Nexus Repository Manager") {
-            steps {
-                script {
-                    pom = readMavenPom file: "pom.xml";
-                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
-                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
-                    artifactPath = filesByGlob[0].path;
-                    artifactExists = fileExists artifactPath;
-                    if(artifactExists) {
-                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
-                        nexusArtifactUploader(
-                            nexusVersion: NEXUS_VERSION,
-                            protocol: NEXUS_PROTOCOL,
-                            nexusUrl: NEXUS_URL,
-                            groupId: pom.groupId,
-                            version: pom.version,
-                            repository: NEXUS_REPOSITORY,
-                            credentialsId: NEXUS_CREDENTIAL_ID,
-                            artifacts: [
-                                [artifactId: pom.artifactId,
-                                classifier: '',
-                                file: artifactPath,
-                                type: pom.packaging],
-                                [artifactId: pom.artifactId,
-                                classifier: '',
-                                file: "pom.xml",
-                                type: "pom"]
-                            ]
-                        );
-                    } else {
-                        error "*** File: ${artifactPath}, could not be found";
-                    }
-                }
-            }
-        }
-	     stage('MVN SONARQUBE') {
+         stage('MVN SONARQUBE') {
                      steps {
                          sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=esprit'
                      }
                  }
                   
+
+		stage ('NEXUS DEPLOY') {
+                      steps {
+                          sh 'mvn clean package deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://http://192.168.16.203:8081/repository/maven-releases1/ -Dfile=target/tpAchatProject-1.0.jar -DskipTests'
+                      }
+                  } 
 //
 //                     stage('Building our image') {
 //                  			steps {
@@ -125,7 +88,6 @@ tools {
     }
 
 }
-
 
 
 
