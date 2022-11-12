@@ -8,7 +8,7 @@ tools {
     environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "http://192.168.16.203:8081"
+        NEXUS_URL = "http://192.168.16.73:8081"
         NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
 	    registry = "ghazichhida/tpachat"
