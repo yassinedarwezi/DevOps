@@ -137,7 +137,7 @@
 	</build>
 	
 	<distributionManagement>
-		<url>http://192.168.122.1:8081/repository/maven-releases/</url>
+		<url>http://192.168.122.1:8081/repository/springboot/</url>
 	</distributionManagement>
 
 </project>
