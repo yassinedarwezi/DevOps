@@ -57,12 +57,12 @@ pipeline {
         }
         }  
          
-	 stage("Publish to Nexus Repository Manager") {
-            steps {
-	    sh 'mvn deploy'
-                
-        }
-	}
+	 stage("Nexus") { 
+         steps{ 
+           
+            sh 'mvn  deploy  -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.122.1:8081/repository/maven-releases/  -Dfile=target/achat-1.0.jar' 
+         } 
+         }
 
         
 	
