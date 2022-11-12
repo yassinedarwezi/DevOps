@@ -29,7 +29,7 @@ public class TestOperateurControllerMock {
 	OperateurController osC;
 
 
-	Operateur o = Operateur.builder().idOperateur((long) 7).nom("yahia").prenom("snoussi").password("yahia").build();
+	Operateur o = Operateur.builder().idOperateur((long) 7).nom("chams1").prenom("balti1").password("pass1").build();
 
 	@Test
 	public void RetrieveOperateurById() {
