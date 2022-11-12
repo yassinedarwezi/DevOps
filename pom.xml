@@ -136,10 +136,7 @@
 				<version>2.22.2</version>
 				<configuration>
 					<includes>
-						<include>TestFournisseurControllerMock.java</include>
-						<include>TestFournisseurServiceImpMock.java</include>				
-						<include>TestOperateurControllerMock.java</include>
-						<include>TestOperateurServiceImpMock.java</include>
+						<include>ProduitServiceImplMockTest.java</include>	
 					</includes>
 				</configuration>
 			</plugin>
