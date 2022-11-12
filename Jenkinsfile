@@ -50,7 +50,7 @@ pipeline {
 
 		stage ('NEXUS DEPLOY') {
                       steps {
-                          sh 'mvn clean package deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://http://192.168.16.203:8081/repository/maven-releases1/ -Dfile=target/tpAchatProject-1.0.jar -DskipTests'
+                          sh 'mvn clean package deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://http://192.168.16.73:8081/repository/maven-releases1/ -Dfile=target/tpAchatProject-1.0.jar -DskipTests'
                       }
                   } 
 //
