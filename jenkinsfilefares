@@ -41,6 +41,24 @@ pipeline {
                 sh 'mvn sonar:sonar'
                 }
         }
-        }      
+        }   
+	
+	stage("Publish to Nexus Repository Manager") {
+            steps {
+                 nexusArtifactUploader artifacts: [
+                     [
+                         artifactId: 'tpAchatProject',
+                         classifier: '',
+                         file: 'target/tpAchatProject-1.0.jar',
+                         type: 'jar']], 
+                     credentialsId: 'Nexus_CD',
+                     groupId: 'com.esprit.examen', 
+                     nexusUrl: '192.168.1.25:8081', 
+                     nexusVersion: 'nexus3', 
+                     protocol: 'http',
+                     repository: 'SpringAchatFares',
+                     version: '1.0'
+            }
+              }
     
   }}
