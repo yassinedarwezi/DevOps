@@ -136,7 +136,8 @@
 				<version>2.22.2</version>
 				<configuration>
 					<includes>
-						<include>ProduitServiceImplMockTest.java</include>	
+						<include>ProduitServiceImplMockTest.java</include>
+						<include>TestOperateurControllerMock.java</include>
 					</includes>
 				</configuration>
 			</plugin>
