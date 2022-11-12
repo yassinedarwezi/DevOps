@@ -47,12 +47,7 @@ tools {
             }
          }
 
-         stage('MVN SONARQUBE') {
-                     steps {
-                         sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=esprit'
-                     }
-                 }
-                  
+        
 
 	stage("Publish to Nexus Repository Manager") {
             steps {
@@ -89,6 +84,12 @@ tools {
                 }
             }
         }
+	     stage('MVN SONARQUBE') {
+                     steps {
+                         sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=esprit'
+                     }
+                 }
+                  
 //
 //                     stage('Building our image') {
 //                  			steps {
