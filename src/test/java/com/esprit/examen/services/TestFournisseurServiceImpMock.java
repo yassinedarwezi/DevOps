@@ -21,9 +21,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.esprit.examen.entities.Fournisseur;
-import com.esprit.examen.entities.Operateur;
+import com.esprit.examen.repositories.DetailFournisseurRepository;
 import com.esprit.examen.repositories.FournisseurRepository;
-import com.esprit.examen.repositories.OperateurRepository;
 
 @SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
@@ -31,6 +30,8 @@ public class TestFournisseurServiceImpMock {
 
 	@Mock
 	FournisseurRepository or;
+	@Mock
+	DetailFournisseurRepository ors;
 	@InjectMocks
 	FournisseurServiceImpl osI;
 
@@ -103,21 +104,7 @@ public class TestFournisseurServiceImpMock {
 		}
 	}
 
-	@Test
-	public void EditFournisseur_ifFound() {
-		Fournisseur o_edit = new Fournisseur();
-		o_edit.setIdFournisseur(3L);
-		o_edit.setCode("yahia edit");
-
-		Fournisseur new_o_edit = new Fournisseur();
-		new_o_edit.setCode("new yahia edit");
-
-		when(or.findById(o_edit.getIdFournisseur())).thenReturn(Optional.of(o_edit));
-		o_edit = osI.updateFournisseur(new_o_edit);
-
-		verify(or).save(o_edit);
-	}
-	
+		
 
 	@Test
 	public void EditException_ifnotFound() {
