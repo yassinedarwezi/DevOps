@@ -53,7 +53,7 @@ pipeline {
 	 stage("MVN Nexus"){
         steps {
 	
-                sh 'mvn deploy'
+                nexusArtifactUploader artifacts: [[artifactId: 'spring-boot-starter-parent', classifier: '', file: 'target/spring-boot-starter-parent-2.5.3.war', type: 'war']], credentialsId: 'nexus3', groupId: 'org.springframework.boot', nexusUrl: '192.168.122.1:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'http://192.168.122.1:8081/repository/springboot/', version: '2.5.3'
                
         }
         }  
