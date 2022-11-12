@@ -46,19 +46,7 @@ pipeline {
             }
         }
       
-	/*
-	 stage('test'){
-            steps {
-                sh 'mvn test'
-            }
-	     post { 
-         always { 
-           junit '**/target/surefire-reports/*.xml'
-           jacoco execPattern: 'target/jacoco.exec'  
-       }
-       }
-        } 
-	*/
+	
           stage("scan"){
         steps {
                 withSonarQubeEnv ( installationName: 'SonarQube-8.9.7'){
