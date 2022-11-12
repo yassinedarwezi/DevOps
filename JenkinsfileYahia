@@ -1,5 +1,16 @@
 pipeline {
     agent any
+     environment {
+        NEXUS_VERSION = "nexus3"
+        NEXUS_PROTOCOL = "http"
+        NEXUS_URL = "192.168.122.1:8081"
+        NEXUS_REPOSITORY = "springboot"
+        NEXUS_CREDENTIAL_ID = "nexus3"
+	}
+	 tools {
+        maven 'M2_HOME'
+        jdk 'JAVA_HOME'
+    }
     
 	   
     stages {
