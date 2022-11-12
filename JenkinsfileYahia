@@ -44,6 +44,24 @@ pipeline {
         }   
 	
 	
+	stage("Publish to Nexus Repository Manager") {
+            steps {
+                 nexusArtifactUploader artifacts: [
+                     [
+                         artifactId: 'tpAchatProject',
+                         classifier: '',
+                         file: 'target/tpAchatProject-1.0.jar',
+                         type: 'jar']], 
+                     credentialsId: 'nexus3',
+                     groupId: 'com.esprit.examen', 
+                     nexusUrl: '192.168.122.1:8081', 
+                     nexusVersion: 'nexus3', 
+                     protocol: 'http',
+                     repository: 'springboot',
+                     version: '1.0'
+            }
+              }
+	
     
   }}
 	        
