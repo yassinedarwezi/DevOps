@@ -21,7 +21,7 @@ pipeline {
    steps {
      withMaven(maven: 'M2_HOME'){
          sh 'mvn -version'
-         sh 'mvn compile test '}}}
+         sh 'mvn compile'}}}
          
     stage('package'){
             steps {
