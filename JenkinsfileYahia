@@ -6,7 +6,7 @@ pipeline {
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "192.168.122.1:8081"
         NEXUS_REPOSITORY = "springboot"
-        NEXUS_CREDENTIAL_ID = "nexus"
+        NEXUS_CREDENTIAL_ID = "nexus3"
 	}
 	 tools {
         maven 'M2_HOME'
@@ -18,7 +18,7 @@ pipeline {
     stages {
        stage ('SCM CHECKOUT') {
     steps {
-      git branch: 'main', url: 'https://github.com/yassinedarwezi/DevOps.git' }}
+      git branch: 'Yahia_ModuleFornisseur', url: 'https://github.com/yassinedarwezi/DevOps.git' }}
       stage('Maven Version'){
             steps {
                 sh 'mvn -version'
