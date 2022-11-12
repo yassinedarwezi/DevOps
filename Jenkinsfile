@@ -52,6 +52,7 @@ pipeline {
                          echo "nexus"
                         sh ' mvn deploy -DskipTests'
                           }
+                          }
 //
 //             /*      stage ('NEXUS DEPLOY') {
 //                      steps {
