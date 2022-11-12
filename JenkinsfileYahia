@@ -37,7 +37,13 @@ pipeline {
             }
         }
       
-	
+	stage('test'){
+            steps {
+                sh 'mvn test'
+            }
+	    }
+	    
+	    
           stage("scan"){
         steps {
                 withSonarQubeEnv ( installationName: 'SonarQube-8.9.7'){
