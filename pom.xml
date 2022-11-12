@@ -137,7 +137,10 @@
 	</build>
 	
 	<distributionManagement>
+		<repository>
+			<id>nexusdeployrepo</id>
 		<url>http://192.168.122.1:8081/repository/springboot/</url>
+			</repository>
 	</distributionManagement>
 
 </project>
