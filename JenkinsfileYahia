@@ -1,18 +1,7 @@
 pipeline {
     agent any
     
-    environment {
-		DOCKERHUB_CREDENTIALS=credentials('Dockerhub')
-        NEXUS_VERSION = "nexus3"
-        NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "192.168.122.1:8081"
-        NEXUS_REPOSITORY = "springboot"
-        NEXUS_CREDENTIAL_ID = "Nexus"       
-	}
-    tools {
-        maven 'M2_HOME'
-        jdk 'JAVA_HOME'
-    }
+ 
 	
 	   
     stages {
