@@ -43,6 +43,15 @@ pipeline {
             }
 	    }
 	    
+	        
+          stage("nexus"){
+        steps {
+                
+                sh 'mvn deploy'
+		
+        }
+        }  
+	    
 	    
           stage("sonar"){
         steps {
