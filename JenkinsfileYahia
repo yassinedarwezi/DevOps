@@ -4,8 +4,8 @@ pipeline {
     environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "192.168.56.1:8081"
-        NEXUS_REPOSITORY = "maven-nexus-repo"
+        NEXUS_URL = "192.168.122.1:8081"
+        NEXUS_REPOSITORY = "springboot"
         NEXUS_CREDENTIAL_ID = "nexus"
     }
  
