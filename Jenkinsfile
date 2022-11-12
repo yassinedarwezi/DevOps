@@ -89,30 +89,30 @@ pipeline {
                 }
             }
         }
-//
-//                     stage('Building our image') {
-//                  			steps {
-//                  				script {
-//                  					dockerImage = docker.build registry + ":$BUILD_NUMBER"
-//                  					}
-//                  				}
-//                  		}
-//                  		stage('Deploy our image') {
-//                           steps {
-//                           script {
-//                               docker.withRegistry( '', registryCredential ) {
-//                               dockerImage.push()
-//                                 }
-//                              }
-//                            }
-//
-//                          }
 
-/* stage       ('DOCKER COMPOSE') {
+                     stage('Building our image') {
+                  			steps {
+                  				script {
+                  					dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                  					}
+                  				}
+                  		}
+                  		stage('Deploy our image') {
+                           steps {
+                           script {
+                               docker.withRegistry( '', registryCredential ) {
+                               dockerImage.push()
+                                 }
+                              }
+                            }
+
+                          }
+
+ stage       ('DOCKER COMPOSE') {
              steps {
                 sh 'docker-compose up -d '
             }
-        } */
+        } 
 
 //          stage("Unit tests") {
 //            steps {
