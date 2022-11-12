@@ -62,10 +62,7 @@ pipeline {
           stage("scan"){
         steps {
                 withSonarQubeEnv ( installationName: 'SonarQube-8.9.7'){
-                 sh """./mvnw sonar:sonar \
-                -Dsonar.projectKey=project-jenkins-pipeline1 \
-                -Dsonar.host.url=http://192.168.122.1:9000 \
-                -Dsonar.coverage.jacoco.xmlReportPaths=../target/site/jacoco-aggregate/jacoco.xml """ 
+                 sh 'mvn sonar:sonar' 
                 }
         }
         }  
