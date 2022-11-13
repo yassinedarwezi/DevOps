@@ -54,12 +54,12 @@ junit '**/target/surefire-reports/TEST-*.xml'
 
  //stage('Build docker image'){
 
- //steps{
- //script{
- //sh 'docker build -t yassinedarwezi/devsecops .'
- //}
- //}
- //}
+ steps{
+ script{
+ sh 'docker build -t yassinedarwezi/devsecops .'
+ }
+ }
+ }
 
 
  stage('Docker login') {
