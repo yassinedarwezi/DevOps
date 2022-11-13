@@ -4,9 +4,9 @@ agent any
         stages{
             stage ('SCM CHECKOUT') {
     steps {
-        
+
      git branch: 'yassinedarwezi', url: 'https://github.com/yassinedarwezi/DevOps.git' }}
-        
+
         stage('Compile Maven Project'){
                                                                      steps{
                                                                         sh 'mvn  compile '
@@ -26,13 +26,13 @@ junit '**/target/surefire-reports/TEST-*.xml'
    }
   }
  }
-    stage('MVN SONARQUBE ') {
-        steps {
-    withSonarQubeEnv ( installationName: 'SonarQube-8.9.2'){
-                sh 'mvn sonar:sonar'
-                }
-  }}
-    
+    stage('MVN SONARQUBE ')
+                 {
+        steps{
+    sh  'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar  '
+     }
+       }
+
 
   stage('Build Maven Spring'){
   steps{
@@ -56,7 +56,7 @@ junit '**/target/surefire-reports/TEST-*.xml'
  sh 'docker build -t yassinedarwezi/devsecops .'
  }
  }
- 
+
 
  stage('Docker login') {
 
