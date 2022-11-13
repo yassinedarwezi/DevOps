@@ -66,7 +66,7 @@ pipeline {
 	      stage('Build docker image'){
  steps{
  script{
- sh 'docker build -t yahiaSnoussi/springprojet .'
+ sh 'docker build -t yahiasnoussi/springprojet .'
  }
  }
  }
@@ -80,7 +80,7 @@ sh 'docker login -u hayoosnoussi -p hayoobeats'
  stage('Docker push') {
  steps {
  sh 'echo "Docker is pushing ...."'
-sh 'docker push yahiaSnoussi/springprojet'
+sh 'docker push yahiasnoussi/springprojet'
  }  }
 	
     
