@@ -103,6 +103,10 @@ pipeline {
                   					}
                   				}
                   		}
+	    steps {
+ sh 'echo "login Docker ...."'
+sh 'docker login -u ghazichhida -p 1456320gh'
+  }  }
                   		stage('Deploy our image') {
                            steps {
                            script {
