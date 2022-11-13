@@ -79,7 +79,7 @@ sh 'docker push yassinedarwezi/devsecops'
   }  } }
 post {
  success {
-	 mail to: "yassine.darwezi0esprit.tn",
+	 mail to: "yassine.darwezi@esprit.tn",
 	subject: "Pipeline Backend Success ",
  	body: "Welcome to DevOps project Backend : Success on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL}"
 }
