@@ -46,12 +46,6 @@ pipeline {
 
             }
          }
-		 
-		  stage("Unit tests") {
-            steps {
-                  sh "mvn test"
-            }
-         }
 
          stage('MVN SONARQUBE') {
                      steps {
@@ -120,7 +114,11 @@ pipeline {
             }
         } 
 
-         
+          stage("Unit tests") {
+            steps {
+                  sh "mvn test"
+            }
+         }
 
 
     }
