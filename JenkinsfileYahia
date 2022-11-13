@@ -61,6 +61,27 @@ pipeline {
                      version: '1.0'
             }
               }
+	      
+	      
+	      stage('Build docker image'){
+ steps{
+ script{
+ sh 'docker build -t yahiaSnoussi/springprojet .'
+ }
+ }
+ }
+
+ stage('Docker login') {
+
+ steps {
+ sh 'echo "login Docker ...."'
+sh 'docker login -u hayoosnoussi -p hayoobeats'
+  }  }
+ stage('Docker push') {
+ steps {
+ sh 'echo "Docker is pushing ...."'
+sh 'docker push yahiaSnoussi/springprojet'
+ }  }
 	
     
   }}
