@@ -1,17 +1,21 @@
 version: '3'
-
 services:
-  db:
-    image: 'mysql:latest'
-    ports:
-           - "3307:3307"
+  database:
+    image: mysql
+    container_name: mysql
     environment:
-           - MYSQL_ROOT_PASSWORD=root
-           - MYSQL_DATABASE=tpachato
-    volumes:
-           - /home/vagrant/mysql:/var/lib/mysql
-    healthcheck:
-           test: ["CMD","mysqladmin","ping","-h","localhost"]
-           timeout: 20s
-           retries: 10
-    restart: always
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tpachato
+    ports:
+      - 3307:3307
+
+
+  spring-boot:
+    image: hayoosnoussi/springprojet
+    container_name: spring
+    ports:
+      - 8089:8089
+    depends_on:
+      - database
+
+    restart: on-failure
