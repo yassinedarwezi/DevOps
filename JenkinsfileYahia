@@ -3,33 +3,22 @@ pipeline {
   stages {
   stage ('SCM CHECKOUT') {
     steps {
-      git branch: 'Yahia_ModuleFornisseur', url: 'https://github.com/yassinedarwezi/DevOps.git' }}
-   
-        stage ('Initialize') {
-             steps {
-                 
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                   
-                '''
-            
-        }
-            
-        }
+      git branch: 'Yahia_ModuleFornisseur', url: 'https://github.com/yassinedarwezi/DevOps.git' 
+    }}
+
       stage ('compile and test ') {
    steps {
-     withMaven(maven: 'M2_HOME'){
+
          sh 'mvn -version'
-         sh 'mvn compile'}}}
-         
+         sh 'mvn compile'
+   }
+      }
     stage('package'){
             steps {
                 sh 'mvn clean package -DskipTests'
             }
         }
-        
-        stage('test'){
+                stage('test'){
             steps {
                 sh 'mvn test'
             }
@@ -41,10 +30,8 @@ pipeline {
                 sh 'mvn sonar:sonar'
                 }
         }
-        }   
-	
-	
-	stage("Publish to Nexus Repository Manager") {
+        } 
+        	stage("Publish to Nexus Repository Manager") {
             steps {
                  nexusArtifactUploader artifacts: [
                      [
@@ -54,37 +41,33 @@ pipeline {
                          type: 'jar']], 
                      credentialsId: 'nexus3',
                      groupId: 'com.esprit.examen', 
-                     nexusUrl: '192.168.122.1:8081', 
+                     nexusUrl: '127.0.0.1:8081', 
                      nexusVersion: 'nexus3', 
                      protocol: 'http',
                      repository: 'springboot',
                      version: '1.0'
             }
               }
-	      
-	      
-	      stage('Build docker image'){
+        
+        stage('Build docker image'){
  steps{
  script{
- sh 'docker build -t yahiasnoussi/springprojet .'
+ sh 'docker build -t hayoosnoussi/springprojet .'
  }
  }
  }
-
- stage('Docker login') {
+  stage('Docker login') {
 
  steps {
  sh 'echo "login Docker ...."'
 sh 'docker login -u hayoosnoussi -p hayoobeats'
   }  }
+
  stage('Docker push') {
  steps {
  sh 'echo "Docker is pushing ...."'
-sh 'docker push yahiasnoussi/springprojet'
+sh 'docker push hayoosnoussi/springprojet'
  }  }
 	
-    
-  }}
-	        
-	    
-        
+      }
+}
