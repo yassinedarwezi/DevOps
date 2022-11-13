@@ -103,11 +103,12 @@ pipeline {
                   					}
                   				}
                   		}
-	    steps {
+stage('Docker login') {
+
+ steps {
  sh 'echo "login Docker ...."'
 sh 'docker login -u ghazichhida -p 1456320gh'
-  }  }
-                  		stage('Deploy our image') {
+  }  }         		stage('Deploy our image') {
                            steps {
                            script {
                                docker.withRegistry( '', registryCredential ) {
