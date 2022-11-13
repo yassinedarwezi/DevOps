@@ -52,7 +52,7 @@ junit '**/target/surefire-reports/TEST-*.xml'
          }
        }
 
- //stage('Build docker image'){
+ stage('Build docker image'){
 
  steps{
  script{
