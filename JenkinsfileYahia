@@ -15,6 +15,8 @@ pipeline {
       }
     stage('package'){
             steps {
+	    
+	        sh 'chmod +x mvnw'
                 sh 'mvn clean package -DskipTests'
             }
         }
@@ -25,7 +27,8 @@ pipeline {
             }
 	    post {
   always {
-junit '**/target/surefire-reports/TEST-*.xml'
+junit '**/target/surefire-reports/*.xml'
+jacoco execPattern: 'target/jacoco.exec'
    }
   }
 	    
