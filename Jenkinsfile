@@ -114,11 +114,11 @@ pipeline {
             }
         } 
 
-//          stage("Unit tests") {
-//            steps {
-//                  sh "mvn test"
-//            }
-//         }
+          stage("Unit tests") {
+            steps {
+                  sh "mvn test"
+            }
+         }
 
 
     }
