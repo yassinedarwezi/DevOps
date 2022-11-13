@@ -2,7 +2,7 @@ pipeline{
 agent any
 
         stages{
-            stage ('SCM CHECKOUT') {
+            stage ('GIT CHECKOUT 1') {
     steps {
 
      git branch: 'yassinedarwezi', url: 'https://github.com/yassinedarwezi/DevOps.git' }}
@@ -12,7 +12,7 @@ agent any
                                                                         sh 'mvn  compile '
                                                                      }
                                                                  }
- stage('Mock & JUnit') {
+ stage(' JUnit 2 ') {
  steps {
 script {
 sh 'echo "Mock & JUnit"'
@@ -26,24 +26,24 @@ junit '**/target/surefire-reports/TEST-*.xml'
    }
   }
  }
-    stage('MVN SONARQUBE ')
+    stage(' SonarQube 3 ')
                  {
         steps{
     sh  ''' mvn sonar:sonar \
           -Dsonar.projectKey=Devops \
-          -Dsonar.host.url=http://192.168.58.132:9000 \
+          -Dsonar.host.url=http://192.168.58.133:9000 \
           -Dsonar.login=bae718e46eafc0e2ad1d8e155e80cce189dfa8bd '''
      }
        }
 
 
-  stage('Build Maven Spring'){
+  stage('Build Maven Spring 4 '){
   steps{
  sh 'mvn  clean install '
    }
   }
 
-  stage('NEXUS')
+  stage('NexuS 5 ')
  {
   steps{
         echo "nexus"
@@ -52,7 +52,7 @@ junit '**/target/surefire-reports/TEST-*.xml'
          }
        }
 
- stage('Build docker image'){
+ stage('Build docker image 6 '){
 
  steps{
  script{
@@ -62,18 +62,18 @@ junit '**/target/surefire-reports/TEST-*.xml'
  }
 
 
- stage('Docker login') {
+ stage('Docker login  7 ') {
 
  steps {
  sh 'echo "login Docker ...."'
 sh 'docker login -u yassinedarwezi -p 21693703aze'
   }  }
- stage('Docker push') {
+ stage('Docker push 8 ') {
  steps {
  sh 'echo "Docker is pushing ...."'
 sh 'docker push yassinedarwezi/devsecops'
  }  }
- stage('Docker compose') {
+ stage('Docker compose 9 ') {
   steps {
    sh 'docker-compose up -d'
   }  } }
