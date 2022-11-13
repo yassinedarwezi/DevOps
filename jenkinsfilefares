@@ -60,5 +60,23 @@ pipeline {
                      version: '1.0'
             }
               }
-    
+    stage('Build docker image'){
+ steps{
+ script{
+ sh 'docker build -t benhassenfares/springprojet .'
+ }
+ }
+ }
+
+ stage('Docker login') {
+
+ steps {
+ sh 'echo "login Docker ...."'
+sh 'docker login -u benhassenfares -p fares12345'
+  }  }
+ stage('Docker push') {
+ steps {
+ sh 'echo "Docker is pushing ...."'
+sh 'docker push benhassenfares/springprojet'
+ }  }
   }}
