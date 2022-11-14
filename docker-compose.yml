@@ -1,0 +1,21 @@
+version: '3'
+services:
+  database:
+    image: mysql
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tpachato
+    ports:
+      - 3307:3307
+
+
+  spring-boot:
+    image: benhassenfares/springprojet
+    container_name: spring
+    ports:
+      - 8089:8089
+    depends_on:
+      - database
+
+    restart: on-failure
