@@ -31,7 +31,7 @@ junit '**/target/surefire-reports/TEST-*.xml'
         steps{
     sh  ''' mvn sonar:sonar \
           -Dsonar.projectKey=Devops \
-          -Dsonar.host.url=http://192.168.58.133:9000 \
+          -Dsonar.host.url=http://192.168.58.134:9000 \
           -Dsonar.login=bae718e46eafc0e2ad1d8e155e80cce189dfa8bd '''
      }
        }
