@@ -109,7 +109,7 @@ pipeline {
 
  steps {
  sh 'echo "login Docker ...."'
-sh 'docker login -u hayoosnoussi -p hayoobeats'
+sh 'docker login -u ghazichhida -p 1456320gh'
   }  }
 	    
 	    
