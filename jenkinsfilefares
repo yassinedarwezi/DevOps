@@ -17,7 +17,7 @@ pipeline {
         }
             
         }
-      stage ('compile and test ') {
+      stage ('compile') {
    steps {
      withMaven(maven: 'M2_HOME'){
          sh 'mvn -version'
@@ -29,13 +29,13 @@ pipeline {
             }
         }
         
-        stage('test'){
+        stage('test unitaire'){
             steps {
                 sh 'mvn test'
             }
 	    }
         
-        stage("scan"){
+        stage("SonarQube"){
         steps {
                 withSonarQubeEnv ( installationName: 'sonarqube-8.9.7'){
                 sh 'mvn sonar:sonar'
@@ -43,7 +43,7 @@ pipeline {
         }
         }   
 	
-	stage("Publish to Nexus Repository Manager") {
+	stage("Nexus") {
             steps {
                  nexusArtifactUploader artifacts: [
                      [
