@@ -78,5 +78,11 @@ sh 'docker login -u benhassenfares -p fares12345'
  steps {
  sh 'echo "Docker is pushing ...."'
 sh 'docker push benhassenfares/springprojet'
- }  }
+ } 
+ 
+ }
+ stage('Docker compose 9 ') {
+  steps {
+   sh 'docker-compose up -d'
+  }  }
   }}
