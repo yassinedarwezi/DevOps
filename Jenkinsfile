@@ -5,7 +5,7 @@ pipeline {
 		
 		   registry = "ghazichhida/tpachat"
 
-        registryCredential = 'dockerhub1'
+        registryCredential = 'dockerhub'
 
         dockerImage = ''
 		
